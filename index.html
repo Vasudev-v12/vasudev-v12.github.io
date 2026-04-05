@@ -1,250 +1,466 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vasudev Shreekumar - Resume</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.4;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .header {
-            text-align: center;
-            padding: 30px 20px;
-        }
-        .name {
-            color: white;
-            background-color: #4a4a4a;
-            font-size: 28px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-        }
-        .contact-info {
-            display: grid;
-            font-size: 14px;
-        }
-        .contact-left {
-            text-align: center;
-        }
-        .contact-right {
-            text-align: center;
-        }
-        .content {
-            padding: 20px 30px;
-        }
-        .summary {
-            font-size: 11px;
-            color: #666;
-            font-style: italic;
-        }
-        .section {
-            margin-bottom: 5px;
-        }
-        .section-title {
-            font-size: 16px;
-            font-weight: bold;
-            color: #4a4a4a;
-            border-bottom: 2px solid #4a4a4a;
-            padding-bottom: 5px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .skills-grid {
-            display: grid;
-            font-size: 14px;
-        }
-        .skill-category {
-            display: flex;
-        }
-        .skill-title {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .education-item {
-            margin-bottom: 15px;
-            font-size: 14px;
-        }
-        .degree {
-            font-size: 14px;
-        }
-        .school {
-            font-size: 14px;
-            margin: 5px 0;
-        }
-        .grade {
-            margin: 5px 0;
-        }
-        ul {
-            margin: 10px 0;
-            padding-left: 20px;
-        }
-        li {
-            margin-bottom: 5px;
-            font-size: 13px;
-        }
-        .websites-section ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        .websites-section li {
-            margin-bottom: 8px;
-        }
-        @media print {
-            body {
-                background-color: white;
-                padding: 0;
-            }
-            .container {
-                box-shadow: none;
-                max-width: none;
-            }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vasudev Shreekumar</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0d0f12;
+    --surface: #13161b;
+    --surface2: #1c2028;
+    --border: #2a2f3a;
+    --accent: #00e5a0;
+    --accent2: #4f8fff;
+    --text: #e8eaf0;
+    --muted: #7a8096;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2rem;
+    background: rgba(13,15,18,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--sans); font-weight: 800; font-size: 1.1rem;
+    color: var(--accent); letter-spacing: -0.5px;
+  }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: 0.78rem;
+    letter-spacing: 0.05em; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,160,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,160,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
+  }
+  .hero-tag {
+    font-size: 0.75rem; color: var(--accent); letter-spacing: 0.15em;
+    margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;
+  }
+  .hero-tag::before {
+    content: ''; display: inline-block; width: 8px; height: 8px;
+    background: var(--accent); border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.4); }
+  }
+  h1 {
+    font-family: var(--sans); font-weight: 800;
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    line-height: 1; letter-spacing: -2px;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+  h1 span { color: var(--accent); }
+  .hero-sub {
+    font-family: var(--sans); font-size: clamp(1rem, 3vw, 1.4rem);
+    color: var(--muted); font-weight: 400; margin: 1rem 0 2rem;
+    max-width: 540px;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.65rem 1.4rem; border-radius: 4px;
+    font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.04em;
+    cursor: pointer; text-decoration: none; transition: all 0.2s;
+    border: 1px solid var(--accent); color: var(--bg);
+    background: var(--accent); font-weight: 600;
+  }
+  .btn:hover { background: transparent; color: var(--accent); }
+  .btn-ghost {
+    background: transparent; color: var(--muted); border-color: var(--border);
+  }
+  .btn-ghost:hover { border-color: var(--accent2); color: var(--accent2); }
+
+  /* SECTION SHARED */
+  section { padding: 5rem 2rem; max-width: 960px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.2em; color: var(--accent);
+    margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 1px; background: var(--border); max-width: 200px;
+  }
+  h2 {
+    font-family: var(--sans); font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 800; letter-spacing: -1px; margin-bottom: 2.5rem;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .skill-group {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.2rem;
+    transition: border-color 0.2s;
+  }
+  .skill-group:hover { border-color: var(--accent); }
+  .skill-group h3 {
+    font-size: 0.72rem; color: var(--accent); letter-spacing: 0.12em;
+    margin-bottom: 0.75rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag {
+    font-size: 0.72rem; padding: 0.25rem 0.55rem;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 3px; color: var(--muted);
+    transition: all 0.15s;
+  }
+  .tag:hover { background: rgba(0,229,160,0.1); border-color: var(--accent); color: var(--accent); }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+  .project-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.5rem;
+    display: flex; flex-direction: column; gap: 0.75rem;
+    position: relative; overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+    cursor: default;
+  }
+  .project-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: var(--accent); transform: scaleX(0);
+    transform-origin: left; transition: transform 0.3s;
+  }
+  .project-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .project-card:hover::before { transform: scaleX(1); }
+  .project-icon {
+    font-size: 1.4rem; margin-bottom: 0.25rem;
+  }
+  .project-name {
+    font-family: var(--sans); font-size: 1rem; font-weight: 700;
+    color: var(--text);
+  }
+  .project-desc {
+    font-size: 0.78rem; line-height: 1.6; color: var(--muted); flex: 1;
+  }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.5rem; }
+  .stack-tag {
+    font-size: 0.68rem; padding: 0.2rem 0.5rem;
+    background: rgba(79,143,255,0.1); border: 1px solid rgba(79,143,255,0.3);
+    border-radius: 3px; color: var(--accent2);
+  }
+
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 1rem; }
+  .exp-item {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.25rem 1.5rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .exp-item:hover { border-color: var(--accent2); }
+  .exp-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent); margin-top: 5px; flex-shrink: 0;
+  }
+  .exp-content { flex: 1; }
+  .exp-content p {
+    font-size: 0.82rem; line-height: 1.65; color: var(--muted);
+  }
+
+  /* CERTS */
+  .cert-list { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .cert-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1rem 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+    transition: border-color 0.2s;
+  }
+  .cert-card:hover { border-color: var(--accent); }
+  .cert-icon { font-size: 1.2rem; }
+  .cert-name { font-size: 0.82rem; color: var(--text); font-weight: 500; }
+
+  /* EDUCATION */
+  .edu-list { display: flex; flex-direction: column; gap: 1rem; }
+  .edu-item {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.25rem 1.5rem;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 0.5rem;
+    transition: border-color 0.2s;
+  }
+  .edu-item:hover { border-color: var(--accent2); }
+  .edu-left h3 { font-family: var(--sans); font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .edu-left p { font-size: 0.78rem; color: var(--muted); }
+  .edu-score {
+    font-family: var(--sans); font-size: 1.3rem; font-weight: 800;
+    color: var(--accent);
+  }
+
+  /* CONTACT */
+  .contact-row {
+    display: flex; flex-wrap: wrap; gap: 1rem;
+  }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.85rem 1.25rem;
+    color: var(--muted); font-size: 0.8rem; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 2rem; font-size: 0.72rem; color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+
+  /* DIVIDER */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0; transform: translateY(20px);
+    animation: fadeUp 0.6s ease forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in:nth-child(1) { animation-delay: 0.1s; }
+  .fade-in:nth-child(2) { animation-delay: 0.2s; }
+  .fade-in:nth-child(3) { animation-delay: 0.3s; }
+  .fade-in:nth-child(4) { animation-delay: 0.4s; }
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="name">VASUDEV SHREEKUMAR</div>
-            <div class="contact-info">
-                <div class="contact-left">
-                    <b>Address: </b>3B6D, Park Avenue Apts, Kandigai, Chennai, Tamil Nadu - 600127<br>
-                    <b>Phone: </b>9789954388
-                </div>
-                <div class="contact-right">
-                    <b>Email: </b> vasudevshreekumar@gmail.com<br>
-                    <a id="linkedIn" href="https://www.linkedin.com/in/vasudev-shreekumar-10398028a"><b>LinkedIn:</b> https://www.linkedin.com/in/vasudev-shreekumar-10398028a</a><br>
-                    <a id="github" href="https://github.com/Vasudev-v12"><b>GitHub:</b> https://github.com/Vasudev-v12</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="content">
-            <!-- <div class="summary">
-                Use this section to give recruiters a quick glimpse of your professional profile. In just 3-4 lines, highlight your background, education and main skills.
-            </div> -->
 
-            <!-- <div class="section websites-section">
-                <div class="section-title">Websites, Portfolios, Profiles</div>
-                <ul>
-                    <li>LinkedIn: N/A</li>
-                    <li>GitHub: N/A</li>
-                </ul>
-            </div> -->
+<nav>
+  <div class="nav-logo">VSK</div>
+  <div class="nav-links">
+    <a href="#about">about</a>
+    <a href="#projects">projects</a>
+    <a href="#contact">contact</a>
+  </div>
+</nav>
 
-            <div class="section">
-                <div class="section-title">Technical Skills</div>
-                <div class="skills-grid">
-                        <div class="skill-category">
-                            <div class="skill-title">Programming Languages:</div>
-                            Java, Python, C, C++, JavaScript, HTML, CSS, React
-                        </div>
-                        <div class="skill-category">
-                            <div class="skill-title">Databases:</div>
-                            MySQL, PostgreSQL
-                        </div>
-                        <div class="skill-category">
-                            <div class="skill-title">Operating Systems:</div>
-                            Windows, Linux
-                        </div>
-                        <div class="skill-category">
-                            <div class="skill-title">Tools & Frameworks:</div>
-                            Git, VS Code, Android Studio, Langchain, Google ADK, pyside2
-                        </div>
-                </div>
-            </div>
+<!-- HERO -->
+<div class="hero" id="about">
+  <div class="hero-grid"></div>
+  <div class="fade-in">
+    <div class="hero-tag">available for opportunities</div>
+  </div>
+  <div class="fade-in">
+    <h1>Vasudev<br><span>Shreekumar</span></h1>
+  </div>
+  <div class="fade-in">
+    <p class="hero-sub">CS undergrad at VIT Chennai · builder of infra, security tools & AI agents · obsessed with systems from bare metal to the cloud.</p>
+  </div>
+  <div class="hero-cta fade-in">
+    <a class="btn" href="#contact">get in touch →</a>
+    <a class="btn btn-ghost" href="#projects">view projects</a>
+  </div>
+</div>
 
-            <!-- <div class="section">
-                <div class="section-title">Education</div>
-                <li>
-                <div class="education-item" id="university">
-                    <div class="degree">Bachelor of Technology in Computer Science and Engineering</div>
-                    <div class="school">VIT Chennai, Chennai</div>
-                    <div>3rd Year</div>
-                    <div>Graduation: 2027</div>
-                </div>
-                
-                <div class="education-item" id="school">
-                    <div class="school">Velammal Vidhyashram, Mambakkam, Chennai, Tamil Nadu, 600127</div>
-                    <div class="degree"><b>Class 10th:</b> year: 2021, score: 91.4%</div>
-                    <div class="degree"><b>Class 12th:</b> year: 2023, score: 77.4%</div>
-                </div>
-                </li>
-            </div> -->
-            <div class="section">
-            <div class="section-title">Education</div>
-            <ul>
-                <li>
-                    <div class="education-item" id="university">
-                        <div class="degree">Bachelor of Technology in Computer Science and Engineering</div>
-                        <div class="school">VIT Chennai, Chennai</div>
-                        <div>Persuing: <b>3rd Year</b>, Graduation year: <b>2027</b></div>
-                        <div></div>
-                    </div>
-                </li>
-                
-                <li>
-                    <div class="education-item" id="school">
-                        <div class="school">Velammal Vidhyashram, Mambakkam, Chennai, Tamil Nadu, 600127</div>
-                        <div class="degree">CBSE Class 10th: year: 2021, score: 91.4%</div>
-                        <div class="degree">CBSE Class 12th: year: 2023, score: 77.4%</div>
-                    </div>
-                </li>
-            </ul>
-            </div>
+<hr class="divider"/>
 
-            <div class="section">
-            <div class="section-title">Projects</div>
-            <ul>
-                <li>
-                    <div class="project-item">
-                        <div class="project-title"><strong>Car Resale Website (Cars Now)</strong></div>
-                        <div class="project-desc">Developed a comprehensive web application for buying and selling pre-owned vehicles with user authentication, vehicle listing, search functionality using PostgreSQL, JavaScript, HTML.</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="project-item">
-                        <div class="project-title"><strong>Antivirus Software (TotalProtect AV)</strong></div>
-                        <div class="project-desc">Built a security application capable of detecting and removing malware threats with on demand scanning, using virus hash tables containing sha256 and md5 hashes, cloud scanning with API.</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="project-item">
-                        <div class="project-title"><strong>Video Chat Application</strong></div>
-                        <div class="project-desc">Created a real-time video communication platform supporting multiple users with AgoraSDK, HTML and JavaScript.</div>
-                    </div>
-                </li>
-            </ul>
-            </div>
-
-            <div class="section">
-                <div class="section-title">Achievements & Certifications</div>
-                <div style="display:flex;justify-content: space-around;">
-                    <p style="font-size: 18px;">Oracle GEN AI certification course:
-                        <a href="./eCertificate.pdf">Certificate</a>
-                    </p>
-                    <img src="./OCI25AICFA.jpeg" height="80px" width="160px">
-                </div>
-            </div>
-
-            <div class="section">
-                <div class="section-title">Hobbies and Interests</div>
-                <div>Software Development, GEN AI, Web Technologies</div>
-            </div>
-        </div>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">01 / SKILLS</div>
+  <h2>Technical Stack</h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h3>LANGUAGES</h3>
+      <div class="skill-tags">
+        <span class="tag">C</span><span class="tag">C++</span><span class="tag">Python</span>
+        <span class="tag">Java</span><span class="tag">Rust</span><span class="tag">Go</span>
+        <span class="tag">JavaScript</span><span class="tag">TypeScript</span>
+      </div>
     </div>
-</body>
+    <div class="skill-group">
+      <h3>FRONTEND</h3>
+      <div class="skill-tags">
+        <span class="tag">React</span><span class="tag">HTML</span><span class="tag">CSS</span>
+        <span class="tag">Full Stack</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>INFRA & CLOUD</h3>
+      <div class="skill-tags">
+        <span class="tag">AWS</span><span class="tag">Docker</span>
+        <span class="tag">Kubernetes</span><span class="tag">Nginx</span>
+        <span class="tag">Linux</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>DATABASES</h3>
+      <div class="skill-tags">
+        <span class="tag">PostgreSQL</span><span class="tag">MySQL</span>
+        <span class="tag">MongoDB</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>OTHER</h3>
+      <div class="skill-tags">
+        <span class="tag">Socket Programming</span>
+        <span class="tag">LangChain</span>
+        <span class="tag">AI Agents</span>
+        <span class="tag">DNS</span>
+      </div>
+    </div>
+  </div>
+</section>
 
+<hr class="divider"/>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">02 / PROJECTS</div>
+  <h2>Things I've Built</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-name">AgentD — AI Document Analyzer</div>
+      <div class="project-desc">AI-powered PDF analyzer using Gemini via LangChain. Generates flowcharts to show entity relationships, summarizes insights, and lets users chat with the LLM to clarify doubts.</div>
+      <div class="project-stack">
+        <span class="stack-tag">LangChain</span>
+        <span class="stack-tag">Gemini API</span>
+        <span class="stack-tag">Python</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-name">TotalProtect AV — Antivirus</div>
+      <div class="project-desc">Security application with on-demand malware scanning using virus hash tables (SHA256 + MD5) and cloud-based scanning via API integration.</div>
+      <div class="project-stack">
+        <span class="stack-tag">C++</span>
+        <span class="stack-tag">SHA256/MD5</span>
+        <span class="stack-tag">Cloud API</span>
+      </div>
+    </div>
+    <div class="project-card">      
+      <div class="project-name">Cars Now — Car Resale Platform</div>
+      <div class="project-desc">Full-stack web app for buying and selling pre-owned vehicles. Features user authentication, vehicle listings, and search functionality.</div>
+      <div class="project-stack">
+        <span class="stack-tag">PostgreSQL</span>
+        <span class="stack-tag">JavaScript</span>
+        <span class="stack-tag">HTML</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-name">Video Chat Application</div>
+      <div class="project-desc">Real-time multi-user video communication web app built with AgoraSDK for seamless peer-to-peer and group video calls.</div>
+      <div class="project-stack">
+        <span class="stack-tag">AgoraSDK</span>
+        <span class="stack-tag">JavaScript</span>
+        <span class="stack-tag">WebRTC</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">03 / EXPERIENCE</div>
+  <h2>Hands-On Work</h2>
+  <div class="exp-list">
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-content">
+        <p>Explored and set up <strong style="color:var(--text)">Cloud Native tools</strong> like Drasi — navigating documentation, spinning up services, and contributing to local experimentation pipelines.</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-content">
+        <p>Deployed <strong style="color:var(--text)">Kubernetes clusters</strong> (minikube & kind) locally, configured <strong style="color:var(--text)">load balancers</strong> and <strong style="color:var(--text)">reverse proxies</strong> with Nginx on personal hardware.</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-content">
+        <p>Set up a <strong style="color:var(--text)">home LAN DNS server</strong>, managed network rules — building real intuition for how networking primitives fit together below the application layer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">06 / CONTACT</div>
+  <h2>Let's Connect</h2>
+  <div class="contact-row">
+    <a class="contact-link" href="mailto:vasudevshreekumar@gmail.com">
+      vasudevshreekumar@gmail.com
+    </a>
+    <a class="contact-link" href="https://github.com/Vasudev-v12">
+      GitHub
+    </a>
+    <a class="contact-link" href="https://www.linkedin.com/in/vasudev-shreekumar-10398028a">
+      LinkedIn
+    </a>
+  </div>
+</section>
+
+<footer>
+  Built with intention · Vasudev Shreekumar · Chennai, India
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.skill-group, .project-card, .exp-item, .cert-card, .edu-item, .contact-link').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
 </html>
